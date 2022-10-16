@@ -21,7 +21,7 @@ class FORMATIONS_API IIFormation
 	GENERATED_BODY()
 
 		// Add interface functions to this class. This is the class that will be inherited to implement this interface.
-		void ChangeInPersonnel(TArray<ACharacter*>& soldiers);
-		void UpdateSoldierPostions(float deltaTime);
+		virtual void ChangeInPersonnel(TArray<ACharacter*>& soldiers) = 0;
+		virtual void UpdateSoldierPostions(float deltaTime) = 0;
 ; public:
 };

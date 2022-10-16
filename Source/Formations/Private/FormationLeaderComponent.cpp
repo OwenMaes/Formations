@@ -2,6 +2,7 @@
 
 
 #include "FormationLeaderComponent.h"
+#include <TestudoFormation.h>
 
 // Sets default values for this component's properties
 UFormationLeaderComponent::UFormationLeaderComponent()
@@ -10,7 +11,8 @@ UFormationLeaderComponent::UFormationLeaderComponent()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
+	//Formations
+	//CurrentFormation = new TestudoFormation();
 }
 
 void UFormationLeaderComponent::RecruitAllInRadius()
@@ -23,7 +25,7 @@ void UFormationLeaderComponent::AddSoldier(ACharacter* soldier)
 		return;
 
 	ArrayOfSoldiers.Add(soldier);
-	ChangeInPersonnel();
+	//ChangeInPersonnel();
 }
 
 void UFormationLeaderComponent::RemoveSoldier(ACharacter* soldier)
@@ -32,7 +34,7 @@ void UFormationLeaderComponent::RemoveSoldier(ACharacter* soldier)
 		return;
 
 	ArrayOfSoldiers.Remove(soldier);
-	ChangeInPersonnel();
+	//ChangeInPersonnel();
 }
 
 
@@ -46,37 +48,37 @@ void UFormationLeaderComponent::BeginPlay()
 }
 
 
-void UFormationLeaderComponent::ChangeInPersonnel()
-{
-	switch (FormationType)
-	{
-	case EFormationType::BASIC:
-		break;
-	case EFormationType::TESTUDO:
-		AdjustShieldWall();
-		break;
-	case EFormationType::ORBIS:
-		break;
-	default:
-		break;
-	}
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Emerald, FString::FromInt(ArrayOfSoldiers.Num()));
-}
-
-void UFormationLeaderComponent::AdjustShieldWall()
-{
-	int nrOfSoldiers = ArrayOfSoldiers.Num();
-	int minSoldiersRequired = 4;
-
-	if (nrOfSoldiers < minSoldiersRequired)
-		return;
-
-	//Calculate rows and cols of shield wall, closest to a square possible
-	int rows = floor(sqrt(nrOfSoldiers));
-	int cols = floor(nrOfSoldiers / rows);
-	int remains = nrOfSoldiers - (rows + cols);
-}
+//void UFormationLeaderComponent::ChangeInPersonnel()
+//{
+//	switch (FormationType)
+//	{
+//	case EFormationType::BASIC:
+//		break;
+//	case EFormationType::TESTUDO:
+//		AdjustShieldWall();
+//		break;
+//	case EFormationType::ORBIS:
+//		break;
+//	default:
+//		break;
+//	}
+//	if (GEngine)
+//		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Emerald, FString::FromInt(ArrayOfSoldiers.Num()));
+//}
+//
+//void UFormationLeaderComponent::AdjustShieldWall()
+//{
+//	int nrOfSoldiers = ArrayOfSoldiers.Num();
+//	int minSoldiersRequired = 4;
+//
+//	if (nrOfSoldiers < minSoldiersRequired)
+//		return;
+//
+//	//Calculate rows and cols of shield wall, closest to a square possible
+//	int rows = floor(sqrt(nrOfSoldiers));
+//	int cols = floor(nrOfSoldiers / rows);
+//	int remains = nrOfSoldiers - (rows + cols);
+//}
 
 // Called every frame
 void UFormationLeaderComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)

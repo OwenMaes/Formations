@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "FormationLeaderComponent.generated.h"
 
+
 UENUM(BlueprintType)
 enum class EFormationType : uint8 {
 	BASIC = 0 UMETA(DisplayName = "Basic formation"),
@@ -21,6 +22,8 @@ enum class EFormationCommand : uint8 {
 	SHIFT = 2 UMETA(DisplayName = "Shift"),
 
 };
+
+class UIFormation;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class FORMATIONS_API UFormationLeaderComponent : public UActorComponent
@@ -46,9 +49,10 @@ private:
 	TArray<ACharacter*> ArrayOfSoldiers;
 	EFormationType FormationType = EFormationType::TESTUDO;
 	EFormationCommand FormationCommand = EFormationCommand::STAND;
+	UIFormation* CurrentFormation = nullptr;
 
-	void ChangeInPersonnel();
-	void AdjustShieldWall();
+	/*void ChangeInPersonnel();
+	void AdjustShieldWall();*/
 
 public:	
 	// Called every frame
